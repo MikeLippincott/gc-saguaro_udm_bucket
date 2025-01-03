@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "gc-saguaro_udm_bucket"
+version = "0.0.1"
+description = "Google bucket endpoint for datasharing between Saguaro, University of Montreal, and the Way Lab."
+authors = ["Mike Lippincott"]
+license = "BSD-3-Clause License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pre-commit = "^3.0.0"
+cookiecutter = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
