@@ -28,10 +28,3 @@ resource "google_storage_bucket_iam_binding" "bucket_get_binding" {
     "serviceAccount:${google_service_account.service_account.email}",
   ]
 }
-
-resource "google_storage_bucket_object" "default" {
-  name         = "test_file.txt"
-  source       = "test_file.txt"
-  content_type = "text/plain"
-  bucket       = google_storage_bucket.target_bucket.name
-}
