@@ -386,7 +386,7 @@ n
 Remote config
 --------------------
 [udm_test]
-service_account_file = ~/Downloads/way-lab-saguaro-timelapse-0a3231e84e7d.json
+service_account_file = path/to/file.json
 anonymous = false
 location = us-central1
 --------------------
