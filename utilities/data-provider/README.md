@@ -200,7 +200,7 @@ Leading `~` will be expanded in the file name as will environment variables such
 Enter a string value. Press Enter for the default ("").
 service_account_file>
 ```
-
+> ⚠️ Important: this file must be specified in order to provide access. Please customize the filepath to the location of the JSON data provided from CU Anschutz.
 ```
 path/to/service/account/key.json
 ```
