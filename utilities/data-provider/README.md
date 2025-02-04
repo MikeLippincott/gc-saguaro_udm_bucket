@@ -31,7 +31,7 @@ Please see the following instructions on uploading data to the Google Cloud buck
   - Use an additional command-line flag `rclone --gcs-bucket-policy-only ...<the rest of your command goes here>...`
 
 ## Example of rclone configuration setup
-
+The following content shows how to configure `rclone` after installing it on your machine.
 ```bash
 rclone config
 ```
