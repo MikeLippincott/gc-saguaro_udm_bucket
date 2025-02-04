@@ -30,7 +30,7 @@ Please see the following instructions on uploading data to the Google Cloud buck
   - Add an environment variable like the following (command may vary based on operating system): `export RCLONE_GCS_BUCKET_POLICY_ONLY=true`
   - Use an additional command-line flag `rclone --gcs-bucket-policy-only ...<the rest of your command goes here>...`
 
-Example of rclone configuration setup:
+## Example of rclone configuration setup
 
 ```bash
 rclone config
