@@ -16,12 +16,12 @@ Please see the following instructions on uploading data to the Google Cloud buck
    - Note: if using a service account, make sure to have the service account JSON key file available and provide the path to this file when prompted.
      An example of config setup can be found below.
 
-1. Test access to Google Cloud Storage bucket with the configured rclone access using, for example, `rclone ls <configured_name>:gc-saguaro_udm_bucket`
+1. Test access to Google Cloud Storage bucket with the configured rclone access using, for example, `rclone ls <configured_name>:gc-saguaro-udm-bucket`
 
 1. Synchronize data found within bucket by using [`rclone` commands](https://rclone.org/commands/).
 
    - Please note: many rclone commands are recursive __by default__ with options to disable.
-   - An example with the sync command: `rclone sync <data source>  <configured_name>:gc-saguaro_udm_bucket`
+   - An example with the sync command: `rclone sync <data source>  <configured_name>:gc-saguaro-udm-bucket`
 
 ### Additional Notes (rclone)
 
@@ -31,12 +31,16 @@ Please see the following instructions on uploading data to the Google Cloud buck
   - Use an additional command-line flag `rclone --gcs-bucket-policy-only ...<the rest of your command goes here>...`
 
 ## Example of rclone configuration setup
-The following content shows how to configure `rclone` after installing it on your machine.
+
+The following content shows how to configure `rclone` after installing it on your machine in a bash terminal.
+
 ```bash
 rclone config
 ```
 
-## 
+______________________________________________________________________
+
+Let us set up a new remote.
 
 ```bash
 Current remotes:
@@ -58,17 +62,21 @@ e/n/d/r/c/s/q>
 n
 ```
 
-## 
+______________________________________________________________________
+
+Let us name the remote.
 
 ```
 name>
 ```
 
 ```
-udm_test
+udm_transfer_endpoint
 ```
 
-## 
+______________________________________________________________________
+
+Let us specify the type of storage to configure.
 
 ```
 Type of storage to configure.
@@ -151,7 +159,11 @@ Storage>
 12
 ```
 
-## 
+______________________________________________________________________
+
+This usually gets filled out if within the institution.
+If not, leave blank.
+We will use a service account instead.
 
 ```
 OAuth Client Id
@@ -162,7 +174,7 @@ Enter a string value. Press Enter for the default ("").
 ```
 ```
 
-## 
+______________________________________________________________________
 
 ```
 client_id>
@@ -176,7 +188,9 @@ client_secret>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+No need to know this as the service account is directly used and is associated with the project.
 
 ```
 Project number.
@@ -188,7 +202,9 @@ project_number>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+This is the service account. We must specify the path to the JSON file.
 
 ```
 Service Account Credentials JSON file path
@@ -200,12 +216,16 @@ Leading `~` will be expanded in the file name as will environment variables such
 Enter a string value. Press Enter for the default ("").
 service_account_file>
 ```
+
 > ⚠️ Important: this file must be specified in order to provide access. Please customize the filepath to the location of the JSON data provided from CU Anschutz.
+
 ```
 path/to/service/account/key.json
 ```
 
-## 
+______________________________________________________________________
+
+Please set this to false
 
 ```
 Access public buckets and objects without credentials
@@ -218,7 +238,9 @@ anonymous>
 false
 ```
 
-## 
+______________________________________________________________________
+
+Please select the default by pressing enter.
 
 ```
 Access Control List for new objects.
@@ -242,7 +264,9 @@ object_acl>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+Please select the default by pressing enter.
 
 ```
 Access Control List for new buckets.
@@ -264,7 +288,9 @@ bucket_acl>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+Please select the default by pressing enter.
 
 ```
 Access checks should use bucket-level IAM policies.
@@ -287,7 +313,9 @@ bucket_policy_only>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+Please select 16. This is step is critical as it specifies the location of the bucket.
 
 ```
 Location for the newly created buckets.
@@ -340,7 +368,9 @@ location>
 16
 ```
 
-## 
+______________________________________________________________________
+
+Please select the default by pressing enter.
 
 ```
 The storage class to use when storing objects in Google Cloud Storage.
@@ -366,7 +396,9 @@ storage_class>
 ```
 ```
 
-## 
+______________________________________________________________________
+
+We do not need to edit the advanced config.
 
 ```
 Edit advanced config? (y/n)
@@ -380,12 +412,12 @@ y/n>
 n
 ```
 
-## 
+______________________________________________________________________
 
 ```
 Remote config
 --------------------
-[udm_test]
+[udm_transfer_endpoint]
 service_account_file = path/to/file.json
 anonymous = false
 location = us-central1
@@ -399,3 +431,19 @@ y/e/d>
 ```
 y
 ```
+
+check that the remote is working by running the following command:
+
+```bash
+rclone ls udm_transfer_endpoint:gc-saguaro-udm-bucket
+```
+
+Please not that if you named your remote differently, you will need to replace `udm_transfer_endpoint` with the name you provided.
+The bucket name will remain the same, however.
+
+This is essentially listing all files in the bucket.
+If you see a list of files, then the configuration was successful.
+
+Below is an example with a gif showing the process of setting up the remote.
+
+![remote](https://github-production-user-asset-6210df.s3.amazonaws.com/3738008/312518810-2f0b6d1b-3c70-4e51-9757-26ccebbdb47e.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250203T191922Z&X-Amz-Expires=300&X-Amz-Signature=e46ff15d6b512054c73bd68d7361afa5f4c7808335662aa95d9d5fea6aa42ced&X-Amz-SignedHeaders=host)
